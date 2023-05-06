@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View , ScrollView} from 'react-native';
 import Colors from '../constants/Colors';
+import SearchFilter from '../components/SearchFilter';
+import SearchBar from '../components/SearchBar';
 
 const HomeScreen =() => {
     return ( <
@@ -10,6 +12,9 @@ const HomeScreen =() => {
                 translucent = {false}
                 backgroundColor={Colors.BASIC_BACKGROUND}
             / >
+            <View>
+                <SearchBar/>
+            </View>
             <View style = {styles.header}>
                 <Text style ={styles.headerTitle}>
                     POPULAR MOVIES

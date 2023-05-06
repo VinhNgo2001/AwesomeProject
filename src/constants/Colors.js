@@ -1,6 +1,9 @@
 export default {
-    BASIC_BACKGROUND: "rgb(245, 247, 250)",
+    BASIC_BACKGROUND: "#dd88d2",
     ACTIVE: "057dfe",
-    WHITE: "ffffff"
+    WHITE: "ffffff",
+    SILVER:"c0c0c0"
+
+
 
 };

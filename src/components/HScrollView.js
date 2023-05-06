@@ -2,7 +2,7 @@ import { StyleSheet, Text, View,ScrollView,Image } from 'react-native'
 import React, { Component } from 'react'
 
 class HScrollView extends Component {
-    render(){
+    render( ){
         return (
             <View style={{marginLeft:20}}>
             
@@ -11,10 +11,12 @@ class HScrollView extends Component {
                         // source={require('../../assets/images/one-punch-man-chap-223-3-1021.webp')}
                         source={this.props.imageUri}
                         style={styles.img1}
+                        onPress={()=>navigation.navigate("movies")}
+                        
                     ></Image>
                 </View>
                 <View style={{flex:1}}>
-                    <Text>{this.props.name}</Text>
+                    <Text style={{fontWeight:"bold",marginLeft:10,marginTop:5}}>{this.props.name}</Text>
                 </View>
 
             

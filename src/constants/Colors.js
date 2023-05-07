@@ -4,7 +4,8 @@ export default {
     WHITE: 'rgb(255, 255, 255)',
     SILVER:"c0c0c0",
     LIGHTSKY:"#00bfff",
-    DEEPBLU: "#1e90ff"
+    DEEPBLU: "#1e90ff",
+    GREY:"#808080"
 
 
 

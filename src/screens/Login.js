@@ -1,10 +1,25 @@
-import { StyleSheet, Text, View,Image,TextInput,Button,onPress,TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View,Image,TextInput,Button,onPress,TouchableOpacity,Alert} from 'react-native'
 import React from 'react'
 import Colors from '../constants/Colors'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ButtonLogin from '../components/ButtonLogin';
 
 const Login = ({navigation}) => {
+    let loginSucess =()=>{
+        Alert.alert(
+            "Notification",
+            "Login success",
+            [
+                {
+                    text:"oke",
+                    onPress: ()=>{
+                        navigation.navigate('home')
+                    }
+                }
+            ]
+
+        )
+    }
   return (
     <View style={styles.loginContainer}>
         <Image
@@ -37,21 +52,21 @@ const Login = ({navigation}) => {
         <View>
             <ButtonLogin
                 title="LOGIN"
-                onPress={ ()=> navigation.navigate("home")}
+                onPress={ loginSucess}
             ></ButtonLogin>
         </View>
         <View>
             <ButtonLogin
                 title="CONTINUE WITH GOOGLE"
-                onPress={ ()=> navigation.navigate("home")}
+                onPress={ loginSucess}
             ></ButtonLogin>
         </View>
         <View>
-            <Text style={styles.btpFogetpw} onPress={()=>navigation.navigate("home")}>Foget Password</Text>
+            <Text style={styles.btpFogetpw} onPress={()=>navigation.navigate("fogetPW")}>Foget Password</Text>
         </View>
         <View style={{ flexDirection:"row", marginTop:5}}>
             <Text style={{fontSize:18,}}>Alrealdy have an account? </Text>
-            <Text style={styles.btnSU} onPress={()=>navigation.navigate("home")}>Sign Up</Text>
+            <Text style={styles.btnSU} onPress={()=>navigation.navigate("signUp")}>Sign Up</Text>
         </View>
         
         

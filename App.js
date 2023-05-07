@@ -4,6 +4,10 @@ import {createStackNavigator} from "@react-navigation/stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import MoviesScreen from "./src/screens/MoviesScreen";
 import Login from "./src/screens/Login";
+import FogetPW from "./src/screens/FogetPW";
+// import SendOTP from "./src/screens/SendOTP";
+import SignUp from "./src/screens/SignUp";
+
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
  const Stack = createStackNavigator()
@@ -17,6 +21,21 @@ export default function () {
                     component={Login} 
                     options={{headerShown:false}}
                 />
+                <Stack.Screen 
+                    name = "fogetPW" 
+                    component={FogetPW} 
+                    options={{headerShown:false}}
+                />
+                 <Stack.Screen 
+                    name = "signUp" 
+                    component={SignUp} 
+                    options={{headerShown:false}}
+                />
+                {/* <Stack.Screen 
+                    name = "sendOTP" 
+                    component={SendOTP} 
+                    options={{headerShown:false}}
+                /> */}
                 <Stack.Screen 
                     name = "home" 
                     component={HomeScreen} 

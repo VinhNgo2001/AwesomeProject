@@ -139,12 +139,15 @@ const styles = StyleSheet.create({
     },
     header: {
         marginTop:20,
-        marginLeft:10
+        marginLeft:10,
+        
+        padding:2
 
     },
     headerTitle:{
-        fontSize:28,
-        marginBottom:10
+        fontSize:24,
+        marginBottom:10,
+        fontWeight:"bold"
 
     },
     navContainer:{
@@ -157,7 +160,7 @@ const styles = StyleSheet.create({
         backgroundColor:Colors.SILVER,
         width:"90%",
         justifyContent:"space-evenly",
-        borderRadius:40,
+        
 
     }
 

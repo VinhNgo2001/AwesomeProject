@@ -15,7 +15,7 @@ const HomeScreen =({navigation}) => {
                 translucent = {false}
                 backgroundColor={Colors.WHITE}
             / >            
-            <View style={{marginTop:20,marginLeft:10}}>
+            <View style={{marginTop:20,marginLeft:10,width:"100%"}}>
                 <SearchBar /> 
             </View>         
             <View style = {styles.header}>               

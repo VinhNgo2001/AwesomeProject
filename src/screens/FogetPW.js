@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View ,TouchableOpacity,onPress,Image,TextInput,Alert} from 'react-native'
+import { StyleSheet, Text, View ,TouchableOpacity,onPress,Image,TextInput,Alert,KeyboardAvoidingView,ScrollView,Keyboard,TouchableWithoutFeedback} from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../constants/Colors';
 import Icons  from 'react-native-vector-icons/AntDesign';
 import ButtonLogin from '../components/ButtonLogin';
+import KeyBoardWrapper from '../components/KeyBoardWrapper';
 
 
 const FogetPW = ({navigation}) => {
@@ -23,43 +24,54 @@ const FogetPW = ({navigation}) => {
     
 
   return (
-    <View style={styles.container}>
-      <View style={{flexDirection:"row", marginTop:20}}>
-        <TouchableOpacity
-            style={styles.btnBack}
-            onPress={()=> navigation.navigate("login")}
-
-        >   
-            <Icon
-                name="arrow-back"
-                style={{color:Colors.WHITE,marginLeft:10,marginTop:4}}
-                size={25}
-            ></Icon>
-        </TouchableOpacity>
-        <Text style={{marginLeft:10,marginTop:10,fontSize:24,fontWeight:"bold"}}>Foget Password</Text>
-      </View>
-      <View style={{alignItems:"center"}}>
-        <Image
-            source={require('../../assets/images/anh_login.png')}
-            style={{width:300,height:300, borderRadius:150,marginTop:30,marginBottom:30}}
-        ></Image>
-        <Text
-            style={{fontWeight:"bold", fontSize:20, width:230}}
-        >Enter your phone number to recover your password</Text>
-        <View style={styles.inputNumber}>
-            <Icons name='phone'
-                size={28}
-                style={{marginLeft:5,marginTop:3}}
-            ></Icons>
-            <TextInput style={{marginLeft:10, fontSize:18}}></TextInput>
-        </View>
-        <View style={{marginTop:20}}>
-            <ButtonLogin title="Done" style={{width:200}} onPress={sendSuces}></ButtonLogin>
-        </View>
-      </View>
-      
-
-    </View>
+    
+    <KeyboardAvoidingView style={{flex:1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : 10}
+    >
+        <ScrollView>
+            <TouchableWithoutFeedback>
+                <View style={styles.container}>
+                  <View style={{flexDirection:"row", marginTop:20}}>
+                    <TouchableOpacity
+                        style={styles.btnBack}
+                        onPress={()=> navigation.navigate("login")}
+                
+                    >   
+                        <Icon
+                            name="arrow-back"
+                            style={{color:Colors.WHITE,marginLeft:10,marginTop:4}}
+                            size={25}
+                        ></Icon>
+                    </TouchableOpacity>
+                    <Text style={{marginLeft:10,marginTop:10,fontSize:24,fontWeight:"bold"}}>Foget Password</Text>
+                  </View>
+                  <View style={{alignItems:"center"}}>
+                    <Image
+                        source={require('../../assets/images/anh_login.png')}
+                        style={{width:300,height:300, borderRadius:150,marginTop:30,marginBottom:30}}
+                    ></Image>
+                    <Text
+                        style={{fontWeight:"bold", fontSize:20, width:230}}
+                    >Enter your phone number to recover your password</Text>
+                    
+                        <View style={styles.inputNumber}>
+                            <Icons name='phone'
+                                size={28}
+                                style={{marginLeft:5,marginTop:3}}
+                            ></Icons>
+                            <TextInput style={{marginLeft:10, fontSize:18,width:200}}></TextInput>
+                        </View>
+                    
+                    <View style={{marginTop:20}}>
+                        <ButtonLogin title="Done" style={{width:200}} onPress={sendSuces}></ButtonLogin>
+                    </View>
+                  </View>
+                  
+                
+                </View>
+            </TouchableWithoutFeedback>
+        </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
 

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     main: {
         backgroundColor:Colors.WHITE,
-        width: 340,
+        width: "80%",
         height:40,
         borderWidth :1,
         borderColor:Colors.SILVER,

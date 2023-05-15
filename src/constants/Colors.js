@@ -3,8 +3,8 @@ export default {
     ACTIVE: "057dfe",
     WHITE: 'rgb(255, 255, 255)',
     SILVER:"c0c0c0",
-    LIGHTSKY:"#00bfff",
-    DEEPBLU: "#1e90ff",
+    LIGHTSKY:"#51B5CB",
+    DEEPBLU: "#29616E",
     GREY:"#808080"
 
 

@@ -15,10 +15,10 @@ export default ButtonLogin
 const styles = StyleSheet.create({
     containerBtn:{
         width:300,
-        height:40,
+        height:60,
         backgroundColor:Colors.LIGHTSKY,
         elevation: 8,
-        borderRadius:30,
+        borderRadius:50,
         paddingVertical:7,
         marginBottom:5,
         borderColor:Colors.WHITE,
@@ -27,11 +27,12 @@ const styles = StyleSheet.create({
         
     },
     titleBtn:{
-        fontSize: 18,
+        fontSize: 20,
         color: "#fff",
         fontWeight: "bold",
         alignSelf: "center",
-        textTransform: "uppercase"
+        // textTransform: "uppercase",
+        marginTop:5
     }
 
 })

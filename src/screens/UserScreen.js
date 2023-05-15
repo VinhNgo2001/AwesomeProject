@@ -3,7 +3,7 @@ import React from 'react'
 import Colors from '../constants/Colors'
 import ButtonLogin from '../components/ButtonLogin'
 
-const UserScreen = () => {
+const UserScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={{height:"35%",backgroundColor:Colors.BACKGROUND_USER_AVATAR,alignItems:"center", marginBottom:10}}>
@@ -27,7 +27,9 @@ const UserScreen = () => {
         </Text>
       </View>
       <View style={{alignItems:"center", marginTop:20}}>
-        <TouchableOpacity>
+        <TouchableOpacity 
+        onPress={()=>navigation.navigate("updatePF")}
+        >
           <Text
             style={{textDecorationLine:"underline", color:Colors.LIGHTSKY,fontSize:20}}
           >Update your profile</Text>

@@ -8,6 +8,8 @@ import FogetPW from "./src/screens/FogetPW";
 // import SendOTP from "./src/screens/SendOTP";
 import SignUp from "./src/screens/SignUp";
 import UserScreen from "./src/screens/UserScreen";
+import EditUser from "./src/screens/EditUser";
+import UpdateYourProfile from "./src/screens/UpdateYourProfile";
 import FavoritesList from "./src/screens/FavoritesList";
 import Icon from 'react-native-vector-icons/Fontisto';
 import Icon1 from 'react-native-vector-icons/Feather';
@@ -57,7 +59,7 @@ function MyTabs() {
             }
         }
       />
-      <Tab.Screen name='user' component={UserScreen}
+      <Tab.Screen name='tab-user' component={TabUser}
         options={
             {
                 tabBarIcon: ()=>
@@ -70,12 +72,37 @@ function MyTabs() {
                 
             }
         }
-      />
+      >
+      </Tab.Screen>
     </Tab.Navigator>
   );
 }
 
+const StackUser = createStackNavigator();
+
+function TabUser() {
+  return (
+    <StackUser.Navigator
+        initialRouteName="user"
+        screenOptions={
+            {
+                title:null,
+                headerShown:false
+            }
+        }
+        
+
+    >
+      <StackUser.Screen name="user" component={UserScreen}  />
+      <StackUser.Screen name="updatePF" component={UpdateYourProfile} />
+      <StackUser.Screen name="edit-user" component={EditUser} />
+      
+    </StackUser.Navigator>
+  );
+}
+
  const Stack = createStackNavigator()
+
 
 export default function () {
     return ( 
@@ -117,6 +144,8 @@ export default function () {
                 component={MoviesScreen}
                 options={{headerShown:false}}
                 />
+                
+                
                 
             </Stack.Navigator>
 

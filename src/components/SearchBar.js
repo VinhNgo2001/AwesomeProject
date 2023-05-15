@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,TextInput } from 'react-native'
+import { StyleSheet, Text, View,TextInput,TouchableOpacity } from 'react-native'
 import React from 'react'
 import Colors from '../constants/Colors'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -6,14 +6,20 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const SearchBar = () => {
   return (
     <View style={styles.asembler}>
-        <View 
-            style={styles.buttonP}
-        >
-            <Icon name ="search" size={25}  style={{marginLeft:7,
-        marginTop:3}}/>
-        </View>
+        
+            <View 
+                style={styles.buttonP}
+            >
+                <TouchableOpacity>
+                <Icon name ="search" size={25}  style={{marginLeft:10,
+                 marginTop:5}}/>
+                 </TouchableOpacity>
+            </View>
+        
         <View style ={styles.main}>
-            <TextInput style ={styles.inputText} >
+            <TextInput style ={styles.inputText} 
+                placeholder='Search name film'
+            >
                 
             </TextInput>
         </View>
@@ -31,7 +37,7 @@ const styles = StyleSheet.create({
         backgroundColor:Colors.WHITE,
         width: "80%",
         height:40,
-        borderWidth :1,
+        borderWidth :0,
         borderColor:Colors.SILVER,
         borderTopRightRadius:40,
         borderBottomRightRadius:40,
@@ -39,16 +45,18 @@ const styles = StyleSheet.create({
     },
     inputText:{
         marginLeft:7,
-        marginTop:3
+        marginTop:5,
+        fontSize:18,
     },
     buttonP:{
         backgroundColor:Colors.WHITE,
         width: 50,
         height:40,
-        borderWidth :1,
+        borderWidth :0,
         borderColor:Colors.SILVER,
         borderTopLeftRadius:40,
         borderBottomLeftRadius:40,
+        marginLeft:10,
 
 
     }

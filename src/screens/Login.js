@@ -25,7 +25,7 @@ const Login = ({navigation}) => {
                 {
                     text:"oke",
                     onPress: ()=>{
-                        navigation.navigate('home')
+                        navigation.navigate('homeTab')
                     }
                 }
             ]

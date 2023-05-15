@@ -82,11 +82,20 @@ const Login = ({navigation}) => {
                                 setPassWordVisible(!getPassWordVisible)
                             }}
                         >
+                        {getPassWordVisible?
                             <Icon
                                     name='eye'
                                     size={25}
                                     style={{marginTop:5}}
-                                ></Icon >
+                            ></Icon >
+                            :
+                            <Icon
+                                    name='eye-slash'
+                                    size={25}
+                                    style={{marginTop:5}}
+                            ></Icon >
+                            }
+                            
                         </TouchableOpacity>
                     </View>
                 </View>

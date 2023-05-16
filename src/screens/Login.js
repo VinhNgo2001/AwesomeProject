@@ -8,7 +8,8 @@ import { StyleSheet,
       TouchableOpacity,
       Alert,
       KeyboardAvoidingView,
-      ScrollView
+      ScrollView,
+      TouchableWithoutFeedback
     } from 'react-native'
 import React, {useState} from 'react'
 import Colors from '../constants/Colors'
@@ -34,90 +35,94 @@ const Login = ({navigation}) => {
     }
     const [getPassWordVisible,setPassWordVisible]=useState(false)
   return (
-    <KeyboardAvoidingView style={{flex:1}}
+    <KeyboardAvoidingView style={{flex:1,backgroundColor:Colors.BASIC_BACKGROUND, }}
     behavior={Platform.OS === 'ios' ? 'padding' : null}
     >
 
-            <ScrollView
-                contentContainerStyle={{flex:1,alignItems:"center"}}
-                style={styles.loginContainer}
+            <ScrollView style={{flex:1}}
+
+                
             >
-                <Image
-                 source={require('../../assets/images/anh_login.png')}
-                 style={{width:250,height:250, borderRadius:125,marginTop:30}}
-                 ></Image>
-                <Text style={{fontSize:35, fontWeight:"bold",marginBottom:10}}>Welcome back!</Text>
-                <View style={styles.asembler}>
-                    <View 
-                        style={styles.buttonP}
-                    >
-                        <Icon1 name ="user" size={25}  style={{marginLeft:15,
-                    marginTop:5}}/>
+                <TouchableWithoutFeedback>
+                    <View style={styles.loginContainer}>
+                        <Image
+                         source={require('../../assets/images/anh_login.png')}
+                         style={{width:250,height:250, borderRadius:125,marginTop:30}}
+                         ></Image>
+                        <Text style={{fontSize:35, fontWeight:"bold",marginBottom:10}}>Welcome back!</Text>
+                        <View style={styles.asembler}>
+                            <View 
+                                style={styles.buttonP}
+                            >
+                                <Icon1 name ="user" size={25}  style={{marginLeft:15,
+                            marginTop:5}}/>
+                            </View>
+                            <View style={styles.main}
+                                
+                            >
+                                <TextInput style={{marginTop:5, fontSize:18}}
+                                    placeholder="Enter your phone"
+                                ></TextInput>
+                            </View>
+                        </View>
+                        <View style={styles.asembler}>
+                            <View 
+                                style={styles.buttonP}
+                            >
+                                <Icon1 name ="lock" size={25}  style={{marginLeft:15,
+                            marginTop:5}}/>
+                            </View>
+                            <View style={styles.main1}>
+                                <TextInput style={{marginTop:5,fontSize:18}}
+                                    secureTextEntry={getPassWordVisible? false:true}
+                                    placeholder="Enter your password"
+                                ></TextInput>
+                                
+                            </View>
+                            <View style={styles.buttonPP}>
+                                <TouchableOpacity
+                                    onPress={()=>{
+                                        setPassWordVisible(!getPassWordVisible)
+                                    }}
+                                >
+                                {getPassWordVisible?
+                                    <Icon
+                                            name='eye'
+                                            size={25}
+                                            style={{marginTop:5}}
+                                    ></Icon >
+                                    :
+                                    <Icon
+                                            name='eye-slash'
+                                            size={25}
+                                            style={{marginTop:5}}
+                                    ></Icon >
+                                    }
+                                    
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View>
+                            <ButtonLogin
+                                title="Login"
+                                onPress={ loginSucess}
+                            ></ButtonLogin>
+                        </View>
+                        <View>
+                            <ButtonLogin
+                                title="Continue with Google"
+                                onPress={ loginSucess}
+                            ></ButtonLogin>
+                        </View>
+                        <View>
+                            <Text style={styles.btpFogetpw} onPress={()=>navigation.navigate("fogetPW")}>Foget Password</Text>
+                        </View>
+                        <View style={{ flexDirection:"row", marginTop:5}}>
+                            <Text style={{fontSize:18,}}>Alrealdy have an account? </Text>
+                            <Text style={styles.btnSU}  onPress={()=>navigation.navigate("signUp")}>Sign Up</Text>
+                        </View>
                     </View>
-                    <View style={styles.main}
-                        
-                    >
-                        <TextInput style={{marginTop:5, fontSize:18}}
-                            placeholder="Enter your phone"
-                        ></TextInput>
-                    </View>
-                </View>
-                <View style={styles.asembler}>
-                    <View 
-                        style={styles.buttonP}
-                    >
-                        <Icon1 name ="lock" size={25}  style={{marginLeft:15,
-                    marginTop:5}}/>
-                    </View>
-                    <View style={styles.main1}>
-                        <TextInput style={{marginTop:5,fontSize:18}}
-                            secureTextEntry={getPassWordVisible? false:true}
-                            placeholder="Enter your password"
-                        ></TextInput>
-                        
-                    </View>
-                    <View style={styles.buttonPP}>
-                        <TouchableOpacity
-                            onPress={()=>{
-                                setPassWordVisible(!getPassWordVisible)
-                            }}
-                        >
-                        {getPassWordVisible?
-                            <Icon
-                                    name='eye'
-                                    size={25}
-                                    style={{marginTop:5}}
-                            ></Icon >
-                            :
-                            <Icon
-                                    name='eye-slash'
-                                    size={25}
-                                    style={{marginTop:5}}
-                            ></Icon >
-                            }
-                            
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View>
-                    <ButtonLogin
-                        title="Login"
-                        onPress={ loginSucess}
-                    ></ButtonLogin>
-                </View>
-                <View>
-                    <ButtonLogin
-                        title="Continue with Google"
-                        onPress={ loginSucess}
-                    ></ButtonLogin>
-                </View>
-                <View>
-                    <Text style={styles.btpFogetpw} onPress={()=>navigation.navigate("fogetPW")}>Foget Password</Text>
-                </View>
-                <View style={{ flexDirection:"row", marginTop:5}}>
-                    <Text style={{fontSize:18,}}>Alrealdy have an account? </Text>
-                    <Text style={styles.btnSU}  onPress={()=>navigation.navigate("signUp")}>Sign Up</Text>
-                </View>
+                </TouchableWithoutFeedback>
                 
                 
             </ScrollView>
@@ -133,6 +138,7 @@ const styles = StyleSheet.create({
         flex:1,
         
         backgroundColor:Colors.BASIC_BACKGROUND,
+        alignItems:"center"
         
 
     },

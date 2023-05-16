@@ -20,7 +20,7 @@ const SignUp = ({navigation}) => {
         )
         }
   return (
-    <KeyboardAvoidingView style={{flex:1}}>
+    <KeyboardAvoidingView style={{flex:1,backgroundColor:Colors.BASIC_BACKGROUND,}}>
         <ScrollView>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>

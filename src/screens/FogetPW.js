@@ -25,7 +25,7 @@ const FogetPW = ({navigation}) => {
 
   return (
     
-    <KeyboardAvoidingView style={{flex:1}}
+    <KeyboardAvoidingView style={{flex:1,backgroundColor:Colors.BASIC_BACKGROUND,}}
         behavior={Platform.OS === 'ios' ? 'padding' : 10}
     >
         <ScrollView>

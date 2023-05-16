@@ -41,7 +41,9 @@ const UserScreen = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <View style={{alignItems:"center", marginTop:20}}>
-        <ButtonLogin title="Log out">
+        <ButtonLogin title="Log out"
+          onPress={()=>navigation.navigate("login")}
+        >
 
         </ButtonLogin>
       </View>

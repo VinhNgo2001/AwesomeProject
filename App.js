@@ -17,6 +17,7 @@ import Colors from "./src/constants/Colors";
 
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import PlayMovies from "./src/screens/PlayMovies";
 
 const Tab = createBottomTabNavigator();
 
@@ -142,6 +143,11 @@ export default function () {
                 <Stack.Screen 
                 name = "movies" 
                 component={MoviesScreen}
+                options={{headerShown:false}}
+                />
+                <Stack.Screen 
+                name = "play-movies" 
+                component={PlayMovies}
                 options={{headerShown:false}}
                 />
                 

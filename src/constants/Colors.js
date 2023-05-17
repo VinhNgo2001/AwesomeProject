@@ -11,7 +11,9 @@ export default {
     BACKGROUND_USER_AVATAR:"#8B90FB",
     BLUE_85P: 'rgba(81, 181, 203, 0.89)',
     BACKGROUND_NAME_MOVIES:'rgba(0, 0, 0, 0.71)',
-    COLOR_BUTTON_BACK: 'rgba(57, 56, 56, 1)'
+    COLOR_BUTTON_BACK: 'rgba(57, 56, 56, 1)',
+    COLOR_BUTTON_BACK_MOVIE: 'rgba(57, 56, 56, 0.0)',
+    BLACK:'#000000'
 
 
 

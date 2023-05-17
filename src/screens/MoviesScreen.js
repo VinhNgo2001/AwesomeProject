@@ -46,7 +46,9 @@ const MoviesScreen =({navigation}) => {
                 </Text>
            </ScrollView>
            <View style={{alignItems:'center', position:'absolute',left:80,bottom:30}}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={()=> navigation.navigate("play-movies")}
+            >
                 <Text style={styles.btnWatch}>Watch now</Text>
             </TouchableOpacity>
            </View>

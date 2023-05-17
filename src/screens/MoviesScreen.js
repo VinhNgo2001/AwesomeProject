@@ -1,9 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView,ImageBackground,StyleSheet, Text, View, Image ,TouchableOpacity, ImageBackgroundBase} from 'react-native';
+import { Alert,ScrollView,ImageBackground,StyleSheet, Text, View, Image ,TouchableOpacity, ImageBackgroundBase} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../constants/Colors';
 import Icon1 from 'react-native-vector-icons/Fontisto';
+import { useState } from 'react';
 const MoviesScreen =({navigation}) => {
+    let AddSucess =()=>{
+        Alert.alert(
+            "Notification",
+            "Added to favorites",
+            [
+                {
+                    text:"oke",
+                    onPress: ()=>{
+                        setAddFavorties(!getAddFavorties)
+                    }
+                }
+            ]
+
+        )
+    }
+    const [getAddFavorties,setAddFavorties]= useState(false)
     return ( <
         View style = { styles.container } >
             <View 
@@ -31,8 +48,10 @@ const MoviesScreen =({navigation}) => {
                         <Text style={styles.btnTag}>Adventure,Action,..</Text>
                     </View>
                     <View style={{width:'20%'}}>
-                        <TouchableOpacity>
-                            <Icon1 name='favorite' size={60} style={{color:Colors.WHITE}}></Icon1>
+                        <TouchableOpacity
+                        onPress={ AddSucess}
+                        >
+                            <Icon1 name='favorite' size={60} style={getAddFavorties?{color:Colors.RED}:{color:Colors.WHITE}}></Icon1>
                             
                         </TouchableOpacity>
                     </View>
@@ -45,12 +64,12 @@ const MoviesScreen =({navigation}) => {
                 They are the archenemy faction of the Cult of Diablos. As a relatively unknown organization, they became a threat to other nations and even the Cult of Diablos came to fear them. In return, the Cult uses their connections in the public to incrimate and blame Shadow Garden for their own evil.
                 </Text>
            </ScrollView>
-           <View style={{alignItems:'center', position:'absolute',left:80,bottom:30}}>
-            <TouchableOpacity
-            onPress={()=> navigation.navigate("play-movies")}
-            >
-                <Text style={styles.btnWatch}>Watch now</Text>
-            </TouchableOpacity>
+           <View style={{ position:'absolute',left:"25%",bottom:30,alignContent:'center',}}>
+                <TouchableOpacity
+                    onPress={()=> navigation.navigate("play-movies")}
+                >
+                    <Text style={styles.btnWatch}>Watch now</Text>
+                </TouchableOpacity>
            </View>
         
         <StatusBar style = "auto" / >
@@ -91,6 +110,7 @@ const styles = StyleSheet.create({
         backgroundColor:Colors.BLUE_85P,
         paddingLeft:30,
         color:Colors.WHITE,
+        paddingTop:5,
 
     },
     btnName:{

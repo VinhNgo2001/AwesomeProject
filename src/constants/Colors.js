@@ -13,7 +13,9 @@ export default {
     BACKGROUND_NAME_MOVIES:'rgba(0, 0, 0, 0.71)',
     COLOR_BUTTON_BACK: 'rgba(57, 56, 56, 1)',
     COLOR_BUTTON_BACK_MOVIE: 'rgba(57, 56, 56, 0.0)',
-    BLACK:'#000000'
+    BLACK:'#000000',
+    RED:'#ff0000',
+    COLOR_BUTTON_EP:'#C9C9C9'
 
 
 

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 
   },
   textUser:{
-    fontSize:24,
+    fontSize:18,
     marginBottom:10
 
   }

@@ -40,7 +40,9 @@ const UpdateYourProfile = ({navigation}) => {
             </View>
             
 
-            <TouchableOpacity style={{ marginTop:5,flex:1}}>
+            <TouchableOpacity style={{ marginTop:5,flex:1}}
+              onPress={()=>navigation.navigate("edit-user")}
+            >
                 <Icon name='right' size={25}>
 
                 </Icon>
@@ -55,7 +57,9 @@ const UpdateYourProfile = ({navigation}) => {
             </View >
             
 
-            <TouchableOpacity style={{ marginTop:5,flex:1}}>
+            <TouchableOpacity style={{ marginTop:5,flex:1}}
+              onPress={()=>navigation.navigate("edit-user")}
+            >
                 <Icon name='right' size={25}>
 
                 </Icon>
@@ -70,7 +74,9 @@ const UpdateYourProfile = ({navigation}) => {
             </View >
             
 
-            <TouchableOpacity style={{ marginTop:5,flex:1}}>
+            <TouchableOpacity style={{ marginTop:5,flex:1}}
+              onPress={()=>navigation.navigate("edit-user")}
+            >
                 <Icon name='right' size={25}>
 
                 </Icon>
@@ -96,7 +102,7 @@ const styles = StyleSheet.create({
     
       },
       textUser:{
-        fontSize:24,
+        fontSize:18,
         marginBottom:10,
        
     

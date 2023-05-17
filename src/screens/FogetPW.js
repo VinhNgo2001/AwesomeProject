@@ -15,7 +15,7 @@ const FogetPW = ({navigation}) => {
             [
                 {
                     text:"Close",
-                    onPress:()=>navigation.navigate('home')
+                    onPress:()=>navigation.navigate('login')
                     //lam sau
                 }
             ]

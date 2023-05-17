@@ -64,7 +64,7 @@ const MoviesScreen =({navigation}) => {
                 They are the archenemy faction of the Cult of Diablos. As a relatively unknown organization, they became a threat to other nations and even the Cult of Diablos came to fear them. In return, the Cult uses their connections in the public to incrimate and blame Shadow Garden for their own evil.
                 </Text>
            </ScrollView>
-           <View style={{ position:'absolute',left:"25%",bottom:30,alignContent:'center',}}>
+           <View style={{ position:'absolute',left:"20%",bottom:30,alignContent:'center',}}>
                 <TouchableOpacity
                     onPress={()=> navigation.navigate("play-movies")}
                 >

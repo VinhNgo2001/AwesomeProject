@@ -76,7 +76,7 @@ const PlayMovies = ({navigation}) => {
         </TouchableOpacity>
         
       </View>
-      <View style={{marginVertical:10}}>
+      <View style={{marginVertical:10,marginLeft:10}}>
         <Text style={styles.textEp}>Episode</Text>
       </View>
       

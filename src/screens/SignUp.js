@@ -4,6 +4,7 @@ import Colors from '../constants/Colors'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ButtonLogin from '../components/ButtonLogin';
 import Icons  from 'react-native-vector-icons/AntDesign';
+import ButtonBack from '../components/ButtonBack';
 
 const SignUp = ({navigation}) => {
     let SUSuccess =()=>{
@@ -24,6 +25,7 @@ const SignUp = ({navigation}) => {
         <ScrollView>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
+                    
                     <Image
                      source={require('../../assets/images/anh_login.png')}
                      style={{width:250,height:250, borderRadius:125,marginTop:30}}
@@ -71,6 +73,7 @@ const SignUp = ({navigation}) => {
                         <ButtonLogin title="Register" style={{width:200}} onPress={SUSuccess} ></ButtonLogin>
                         </View>
                     </View>
+                    <ButtonBack onPress={()=> navigation.navigate('login')}></ButtonBack>
                 </View>
             </TouchableWithoutFeedback>
         </ScrollView>

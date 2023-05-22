@@ -5,6 +5,7 @@ import Colors from '../constants/Colors';
 import Icons  from 'react-native-vector-icons/AntDesign';
 import ButtonLogin from '../components/ButtonLogin';
 import KeyBoardWrapper from '../components/KeyBoardWrapper';
+import ButtonBack from '../components/ButtonBack';
 
 
 const FogetPW = ({navigation}) => {
@@ -21,6 +22,7 @@ const FogetPW = ({navigation}) => {
             ]
         )
         }
+    const [number, onChangeNumber] = React.useState('');
     
 
   return (
@@ -31,8 +33,8 @@ const FogetPW = ({navigation}) => {
         <ScrollView>
             <TouchableWithoutFeedback>
                 <View style={styles.container}>
-                  <View style={{flexDirection:"row", marginTop:20}}>
-                    <TouchableOpacity
+                  <View style={{alignItems:'center',marginTop:10}}>
+                    {/* <TouchableOpacity
                         style={styles.btnBack}
                         onPress={()=> navigation.navigate("login")}
                 
@@ -42,7 +44,7 @@ const FogetPW = ({navigation}) => {
                             style={{color:Colors.WHITE,marginLeft:10,marginTop:4}}
                             size={25}
                         ></Icon>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <Text style={{marginLeft:10,marginTop:10,fontSize:24,fontWeight:"bold"}}>Foget Password</Text>
                   </View>
                   <View style={{alignItems:"center"}}>
@@ -51,13 +53,18 @@ const FogetPW = ({navigation}) => {
                         style={{width:300,height:300, borderRadius:150,marginTop:30,marginBottom:30}}
                     ></Image>
                     <Text
-                        style={{fontWeight:"bold", fontSize:20, width:230}}
+                        style={{fontWeight:"bold", fontSize:20,marginHorizontal:10}}
                     >Enter your phone number to recover your password</Text>
                     
                         <View style={styles.inputNumber}>
                             <Icons name='phone'
                                 size={28}
                                 style={{marginLeft:5,marginTop:3}}
+                                onChangeText={onChangeNumber}
+                                value={number}
+                                keyboardType="numeric"
+                                placeholder="Enter your phone number"
+                                dataDetectorType={'phoneNumber'}
                             ></Icons>
                             <TextInput style={{marginLeft:10, fontSize:18,width:200}}></TextInput>
                         </View>
@@ -67,7 +74,7 @@ const FogetPW = ({navigation}) => {
                     </View>
                   </View>
                   
-                
+                <ButtonBack onPress={()=>navigation.navigate('login')}></ButtonBack>
                 </View>
             </TouchableWithoutFeedback>
         </ScrollView>
@@ -99,7 +106,7 @@ const styles = StyleSheet.create({
         backgroundColor:Colors.WHITE,
         width: 300,
         height:40,
-        borderWidth :1,
+        borderWidth :0,
         borderColor:Colors.SILVER,
         borderRadius:40,
     }

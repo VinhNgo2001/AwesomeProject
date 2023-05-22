@@ -103,12 +103,19 @@ function TabUser() {
 }
 
  const Stack = createStackNavigator()
-
-
-export default function () {
-    return ( 
-        <NavigationContainer>
-            <Stack.Navigator>
+ 
+function TabLogin (){
+    return(
+        
+            <Stack.Navigator
+                initialRouteName="login"
+                screenOptions={
+                    {
+                        title:null,
+                        headerShown:false
+                    }
+                }
+            >
                 <Stack.Screen 
                     name = "login" 
                     component={Login} 
@@ -124,6 +131,17 @@ export default function () {
                     component={SignUp} 
                     options={{headerShown:false}}
                 />
+            </Stack.Navigator>
+        
+    )
+}
+
+
+export default function () {
+    return ( 
+        <NavigationContainer>
+            <Stack.Navigator>
+               
                 {/* <Stack.Screen 
                     name = "sendOTP" 
                     component={SendOTP} 
@@ -132,8 +150,15 @@ export default function () {
                 {/* <Stack.Screen 
                     name = "home" 
                     component={HomeScreen} 
-                    options={{headerShown:false}}
+                    options=
+                    {{headerShown:false}}
                 /> */}
+                <Stack.Screen
+                    name='loginTab'
+                    component={TabLogin}
+                    options={{headerShown:false}}
+                    
+                ></Stack.Screen>
                 <Stack.Screen
                     name='homeTab'
                     component={MyTabs}

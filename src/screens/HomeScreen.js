@@ -4,16 +4,35 @@ import Colors from '../constants/Colors';
 import SearchFilter from '../components/SearchFilter';
 import SearchBar from '../components/SearchBar';
 import HScrollView from '../components/HScrollView';
+import { SliderBox } from "react-native-image-slider-box";
 
 
 
 const HomeScreen =({navigation}) => {
+    const images=[
+        require('../../assets/images/gifs/kimetsu_no_yaiba.webp'),
+        require('../../assets/images/gifs/OPM.webp'),
+        require('../../assets/images/gifs/nezuko.webp'),
+        require('../../assets/images/gifs/7vienbirong.webp'),
+
+    ]
     return ( <
         ScrollView style = { styles.container } >
                       
             <View style={{marginTop:20,width:"90%",alignSelf:"center"}}>
                 <SearchBar /> 
-            </View>         
+            </View>     
+            <View>
+                <SliderBox 
+                    images={images}
+                    autoplay={true}
+                    autoplayInterval={6000}
+                    circleLoop
+                    ImageComponentStyle={{borderRadius:30, width: '95%', marginTop: 20}}
+                >
+                </SliderBox>
+
+            </View>    
             <View style = {styles.header}>               
                 <Text style ={styles.headerTitle}
                 >
@@ -27,7 +46,7 @@ const HomeScreen =({navigation}) => {
                 >   
                 <TouchableOpacity  onPress={()=>navigation.navigate("movies")}>
                     <HScrollView      
-                        imageUri={require('../../assets/images/one-punch-man-chap-223-3-1021.webp')}
+                        imageUri={require('../../assets/images/demoslayder_bia.png')}
                         name="One Puch Man"
                     />
                 </TouchableOpacity>

@@ -20,7 +20,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PlayMovies from "./src/screens/PlayMovies";
 
 const Tab = createBottomTabNavigator();
-
+// tab home : home screen, favorite list , user
 function MyTabs() {
   return (
     <Tab.Navigator
@@ -80,7 +80,7 @@ function MyTabs() {
 }
 
 const StackUser = createStackNavigator();
-
+// tab user - update profile - edit user
 function TabUser() {
   return (
     <StackUser.Navigator
@@ -103,7 +103,7 @@ function TabUser() {
 }
 
  const Stack = createStackNavigator()
- 
+// tab login - foget password - sign up - get opt
 function TabLogin (){
     return(
         
@@ -136,23 +136,12 @@ function TabLogin (){
     )
 }
 
-
+// tab main 
 export default function () {
     return ( 
         <NavigationContainer>
             <Stack.Navigator>
                
-                {/* <Stack.Screen 
-                    name = "sendOTP" 
-                    component={SendOTP} 
-                    options={{headerShown:false}}
-                /> */}
-                {/* <Stack.Screen 
-                    name = "home" 
-                    component={HomeScreen} 
-                    options=
-                    {{headerShown:false}}
-                /> */}
                 <Stack.Screen
                     name='loginTab'
                     component={TabLogin}
@@ -166,20 +155,16 @@ export default function () {
                     
                 ></Stack.Screen>
                 <Stack.Screen 
-                name = "movies" 
-                component={MoviesScreen}
-                options={{headerShown:false}}
+                    name = "movies" 
+                    component={MoviesScreen}
+                    options={{headerShown:false}}
                 />
                 <Stack.Screen 
-                name = "play-movies" 
-                component={PlayMovies}
-                options={{headerShown:false}}
+                    name = "play-movies" 
+                    component={PlayMovies}
+                    options={{headerShown:false}}
                 />
-                
-                
-                
             </Stack.Navigator>
-
         </NavigationContainer>
        
     );

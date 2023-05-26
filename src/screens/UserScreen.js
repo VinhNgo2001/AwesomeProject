@@ -1,20 +1,51 @@
-import { StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View,Image, TouchableOpacity,ActivityIndicator } from 'react-native'
+import React, {useEffect, useState} from 'react';
 import Colors from '../constants/Colors'
 import ButtonLogin from '../components/ButtonLogin'
 
+const URL= 'http://172.20.33.125:5000/api/v1/users'
+
+
+// get data user
+
+
+
+
 const UserScreen = ({navigation}) => {
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const getDataUser = async () => {
+    try {
+      const response = await fetch(
+        'http://172.20.33.125:5000/api/v1/users',
+      );
+      const json = await response.json();
+      // console.log('check data: ', json)
+      setData(json.data)
+    } catch (error) {
+      console.error(error);
+    }
+    
+  };
+
+  useEffect(() => {
+    getDataUser();
+  }, []);
+  let dataUser= data[0]
+  console.log('data:name ', dataUser)
   return (
-    <View style={styles.container}>
-      <View style={{height:"35%",backgroundColor:Colors.BACKGROUND_USER_AVATAR,alignItems:"center", marginBottom:10}}>
+   
+      <View style={styles.container}>
+      
+        <View style={{height:"35%",backgroundColor:Colors.BACKGROUND_USER_AVATAR,alignItems:"center", marginBottom:10}}>
         <Image
           source={require('../../assets/images/anh_login.png')}
           style={{width:200,height:200, borderRadius:100,marginTop:30}}
           ></Image>
-      </View>
-      <View style={{marginLeft:10}}>
+        </View>
+        <View style={{marginLeft:10}}>  
         <Text style={styles.textUser}>
-          Name :Oggy
+          Name :{dataUser.firstName}
         </Text>
         <Text style={styles.textUser}>
           Date of Birth: April 22, 2016
@@ -46,7 +77,9 @@ const UserScreen = ({navigation}) => {
         >
 
         </ButtonLogin>
-      </View>
+        </View>
+
+
     </View>
   )
 }

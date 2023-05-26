@@ -4,7 +4,7 @@ import Colors from '../constants/Colors';
 import SearchFilter from '../components/SearchFilter';
 import SearchBar from '../components/SearchBar';
 import HScrollView from '../components/HScrollView';
-import { SliderBox } from "react-native-image-slider-box";
+
 
 
 
@@ -23,14 +23,7 @@ const HomeScreen =({navigation}) => {
                 <SearchBar /> 
             </View>     
             <View>
-                <SliderBox 
-                    images={images}
-                    autoplay={true}
-                    autoplayInterval={6000}
-                    circleLoop
-                    ImageComponentStyle={{borderRadius:30, width: '95%', marginTop: 20}}
-                >
-                </SliderBox>
+                
 
             </View>    
             <View style = {styles.header}>               

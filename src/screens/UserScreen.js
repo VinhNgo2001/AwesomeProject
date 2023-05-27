@@ -18,7 +18,7 @@ const UserScreen = ({navigation}) => {
   const callDataUser  = async()=>{
     console.log('calling...')
     try {
-      const response = await fetch('http://172.20.33.125:5000/api/v1/users/10');
+      const response = await fetch('http://172.20.33.125:5000/api/v1/users/14');
       const json = await response.json();
       setData(json);
     } catch (error) {
@@ -31,6 +31,7 @@ const UserScreen = ({navigation}) => {
     callDataUser();
   }, []);
   let data1=data
+  console.log('succes',data)
   // console.log('check: ',data['data']["id"])
   
   
@@ -45,10 +46,12 @@ const UserScreen = ({navigation}) => {
           style={{width:200,height:200, borderRadius:100,marginTop:30}}
           ></Image>
         </View>
+
+        {isLoading ? <ActivityIndicator/>:(
         <View style={{marginLeft:10}}> 
-        {isLoading ? <ActivityIndicator/>:(<Text style={styles.textUser}>
+       <Text style={styles.textUser}>
          Name:  {data['data']["firstName"]}
-        </Text>)}
+        </Text>
         
         <Text style={styles.textUser}>
           Date of Birth: April 22, 2016
@@ -60,6 +63,7 @@ const UserScreen = ({navigation}) => {
           Phone: {data['data']["numberPhone"]}
         </Text>
       </View>
+      )}
       <View style={{alignItems:"center", marginTop:20}}>
         <TouchableOpacity 
         onPress={()=>navigation.navigate("updatePF")}

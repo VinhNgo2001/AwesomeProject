@@ -50,7 +50,7 @@ const UserScreen = ({navigation}) => {
         {isLoading ? <ActivityIndicator/>:(
         <View style={{marginLeft:10}}> 
        <Text style={styles.textUser}>
-         Name:  {data['data']["firstName"]}
+         Name:  {data['data']["lastName"]} {data['data']["firstName"]}
         </Text>
         
         <Text style={styles.textUser}>

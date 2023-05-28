@@ -1,20 +1,31 @@
 import { StyleSheet, Text, View,Image,TextInput,Button,onPress,TouchableOpacity,Alert,Keyboard,KeyboardAvoidingView,TouchableWithoutFeedback,ScrollView} from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Colors from '../constants/Colors'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ButtonLogin from '../components/ButtonLogin';
 import Icons  from 'react-native-vector-icons/AntDesign';
 import ButtonBack from '../components/ButtonBack';
+import { Formik } from 'formik';
+import FormSignUp from '../components/FormSignUp';
+import client from '../api/client';
 
 const SignUp = ({navigation}) => {
-    let SUSuccess =()=>{
+    const SUSuccess = async(values)=>{
+        const res = await client.post('/create-user', {
+            ...values,})
+        console.log(values),
         Alert.alert(
             "Notification",
             'Sign Up Success ',
             [
                 {
                     text:"Close",
-                    onPress:()=>navigation.navigate('login')
+                    onPress:()=>{
+                        
+                        navigation.navigate('login')},
+                        
+
+                    
                     //lam sau
                 }
             ]
@@ -33,47 +44,75 @@ const SignUp = ({navigation}) => {
                     <Text
                         style={{fontWeight:"bold", fontSize:24, width:230, marginLeft:20, marginTop:20}}
                     >Welcome to HIPPO</Text>
-                    <View>
-                        <View style={styles.inputNumber}>
-                            <Icons name='user'
-                                size={28}
-                                style={{marginLeft:5,marginTop:3}}
-                            ></Icons>
-                            <TextInput style={{marginLeft:10, fontSize:18}}
-                                placeholder="Enter your full name"
-                            ></TextInput>
+                    <Formik
+                         initialValues={{ firstName: '',passWord:'',numberPhone:'' }}
+                         onSubmit={SUSuccess}
+
+                         
+                    >
+                         {({ handleChange, handleBlur, handleSubmit, values }) => (
+                            
+                        <View>
+                           <View>
+                                <View style={styles.inputNumber}>
+                                    <Icons name='user'
+                                        size={28}
+                                        style={{marginLeft:5,marginTop:3}}
+                                    ></Icons>
+                                <TextInput
+                                    style={{marginLeft:10, fontSize:18}}
+                                    placeholder="Enter your full name"
+                                    onChangeText={handleChange('firstName')}
+                                    onBlur={handleBlur('firstName')}
+                                    value={values.firstName}
+                                />
+                                </View>
+                                <View style={styles.inputNumber}>
+                                    <Icons name='phone'
+                                                        size={28}
+                                                        style={{marginLeft:5,marginTop:3}}
+                                                    ></Icons>
+                                <TextInput
+                                    style={{marginLeft:10, fontSize:18}}
+                                    placeholder="Enter your phone"
+                                    onChangeText={handleChange('numberPhone')}
+                                    onBlur={handleBlur('numberPhone')}
+                                    value={values.numberPhone}
+                                />
+                                </View>
+                                <View style={styles.inputNumber}>
+                                    <Icons name='lock'
+                                        size={28}
+                                        style={{marginLeft:5,marginTop:3}}
+                                    ></Icons>
+                                <TextInput
+                                    style={{marginLeft:10, fontSize:18}}
+                                    placeholder="Enter your phone"
+                                    onChangeText={handleChange('passWord')}
+                                    onBlur={handleBlur('passWord')}
+                                    value={values.passWord}
+                                />
+                                </View>
+                            </View><View style={styles.inputNumber}>
+                                <Icons name='lock'
+                                    size={28}
+                                    style={{marginLeft:5,marginTop:3}}
+                                ></Icons>
+                                <TextInput style={{marginLeft:10, fontSize:18}}
+                                    placeholder="Confirm your Password"
+                                ></TextInput>
+                            </View>
+                            <View style={{marginTop:20}}>
+                            <ButtonLogin title="Register" style={{width:200}} onPress ={handleSubmit}  
+
+                             ></ButtonLogin>
+                            
+                            </View>
                         </View>
-                            <View style={styles.inputNumber}>
-                            <Icons name='phone'
-                                size={28}
-                                style={{marginLeft:5,marginTop:3}}
-                            ></Icons>
-                            <TextInput style={{marginLeft:10, fontSize:18}}
-                                placeholder="Enter your phone"
-                                
-                            ></TextInput>
-                        </View><View style={styles.inputNumber}>
-                            <Icons name='lock'
-                                size={28}
-                                style={{marginLeft:5,marginTop:3}}
-                            ></Icons>
-                            <TextInput style={{marginLeft:10, fontSize:18}}
-                                placeholder="Enter your Password"
-                            ></TextInput>
-                        </View><View style={styles.inputNumber}>
-                            <Icons name='lock'
-                                size={28}
-                                style={{marginLeft:5,marginTop:3}}
-                            ></Icons>
-                            <TextInput style={{marginLeft:10, fontSize:18}}
-                                placeholder="Confirm your Password"
-                            ></TextInput>
-                        </View>
-                        <View style={{marginTop:20}}>
-                        <ButtonLogin title="Register" style={{width:200}} onPress={SUSuccess} ></ButtonLogin>
-                        </View>
-                    </View>
+                        )}
+                    </Formik>
                     <ButtonBack onPress={()=> navigation.navigate('login')}></ButtonBack>
+                    
                 </View>
             </TouchableWithoutFeedback>
         </ScrollView>

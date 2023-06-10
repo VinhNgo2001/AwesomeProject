@@ -2,9 +2,11 @@ import { StyleSheet, Text, View,Image, TouchableOpacity,ActivityIndicator } from
 import React, {useEffect, useState} from 'react';
 import Colors from '../constants/Colors'
 import ButtonLogin from '../components/ButtonLogin'
+import client from '../api/client';
 
 
 const URL= 'http://172.20.33.125:5000/api/v1/users'
+//http://localhost:5000/
 
 
 // get data user
@@ -18,7 +20,7 @@ const UserScreen = ({navigation}) => {
   const callDataUser  = async()=>{
     console.log('calling...')
     try {
-      const response = await fetch('http://172.20.33.125:5000/api/v1/users/14');
+      const response = await fetch('http://10.0.100.86:5000/api/v1/users/23');
       const json = await response.json();
       setData(json);
     } catch (error) {
@@ -50,7 +52,7 @@ const UserScreen = ({navigation}) => {
         {isLoading ? <ActivityIndicator/>:(
         <View style={{marginLeft:10}}> 
        <Text style={styles.textUser}>
-         Name:  {data['data']["lastName"]} {data['data']["firstName"]}
+         Name:  {data['data']["firstName"] }
         </Text>
         
         <Text style={styles.textUser}>

@@ -87,7 +87,7 @@ const SignUp = ({navigation}) => {
                                     ></Icons>
                                 <TextInput
                                     style={{marginLeft:10, fontSize:18}}
-                                    placeholder="Enter your phone"
+                                    placeholder="Enter your Password"
                                     onChangeText={handleChange('passWord')}
                                     onBlur={handleBlur('passWord')}
                                     value={values.passWord}

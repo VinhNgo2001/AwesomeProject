@@ -18,6 +18,7 @@ import Colors from "./src/constants/Colors";
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PlayMovies from "./src/screens/PlayMovies";
+import { AuthProvider } from "./src/context/AuthContext";
 
 const Tab = createBottomTabNavigator();
 // tab home : home screen, favorite list , user
@@ -139,34 +140,35 @@ function TabLogin (){
 // tab main 
 export default function () {
     return ( 
-        <NavigationContainer>
-            <Stack.Navigator>
-               
-                <Stack.Screen
-                    name='loginTab'
-                    component={TabLogin}
-                    options={{headerShown:false}}
-                    
-                ></Stack.Screen>
-                <Stack.Screen
-                    name='homeTab'
-                    component={MyTabs}
-                    options={{headerShown:false}}
-                    
-                ></Stack.Screen>
-                <Stack.Screen 
-                    name = "movies" 
-                    component={MoviesScreen}
-                    options={{headerShown:false}}
-                />
-                <Stack.Screen 
-                    name = "play-movies" 
-                    component={PlayMovies}
-                    options={{headerShown:false}}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
-       
+        <AuthProvider>
+            <NavigationContainer>
+                <Stack.Navigator>
+                
+                    <Stack.Screen
+                        name='loginTab'
+                        component={TabLogin}
+                        options={{headerShown:false}}
+                        
+                    ></Stack.Screen>
+                    <Stack.Screen
+                        name='homeTab'
+                        component={MyTabs}
+                        options={{headerShown:false}}
+                        
+                    ></Stack.Screen>
+                    <Stack.Screen 
+                        name = "movies" 
+                        component={MoviesScreen}
+                        options={{headerShown:false}}
+                    />
+                    <Stack.Screen 
+                        name = "play-movies" 
+                        component={PlayMovies}
+                        options={{headerShown:false}}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </AuthProvider>
     );
 }
 

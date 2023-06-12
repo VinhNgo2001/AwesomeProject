@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View,Image,TextInput,Button,onPress,TouchableOpacity,Alert,Keyboard,KeyboardAvoidingView,TouchableWithoutFeedback,ScrollView} from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Colors from '../constants/Colors'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ButtonLogin from '../components/ButtonLogin';
@@ -8,12 +8,14 @@ import ButtonBack from '../components/ButtonBack';
 import { Formik } from 'formik';
 import FormSignUp from '../components/FormSignUp';
 import client from '../api/client';
+import { AuthContext } from '../context/AuthContext';
 
 const SignUp = ({navigation}) => {
-    const SUSuccess = async(values)=>{
-        const res = await client.post('/create-user', {
-            ...values,})
-        console.log(values),
+    const {signUp} =useContext(AuthContext)
+    const SUSuccess = (values)=>{
+        signUp(values)
+        
+        
         Alert.alert(
             "Notification",
             'Sign Up Success ',

@@ -11,27 +11,51 @@ import { StyleSheet,
       ScrollView,
       TouchableWithoutFeedback
     } from 'react-native'
-import React, {useState} from 'react'
+import React, {useContext,useState} from 'react'
 import Colors from '../constants/Colors'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon1 from 'react-native-vector-icons/Feather'
 import ButtonLogin from '../components/ButtonLogin';
+import { AuthContext } from '../context/AuthContext';
+import { Formik } from 'formik';
+
 
 const Login = ({navigation}) => {
-    let loginSucess =()=>{
-        Alert.alert(
-            "Notification",
-            "Login success",
-            [
-                {
-                    text:"oke",
-                    onPress: ()=>{
-                        navigation.navigate('homeTab')
+    const {login,isTrue} =useContext(AuthContext)
+    const loginSucess =(values)=>{
+        login(values)
+        console.log('check log i dung hay sai:' ,isTrue)
+        if(isTrue){
+            Alert.alert(
+                "Notification",
+                "Login success",
+                [
+                    {
+                        text:"oke",
+                        onPress: ()=>{
+                            navigation.navigate('homeTab')
+                        }
                     }
-                }
-            ]
-
-        )
+                ]
+    
+            )
+        }
+        else{
+            Alert.alert(
+                "Notification",
+                "Login false",
+                [
+                    {
+                        text:"oke",
+                        // onPress: ()=>{
+                        //     navigation.navigate('homeTab')
+                        // }
+                    }
+                ]
+    
+            )
+        }
+        
     }
     const [getPassWordVisible,setPassWordVisible]=useState(false)
   return (
@@ -50,64 +74,83 @@ const Login = ({navigation}) => {
                          style={{width:250,height:250, borderRadius:125,marginTop:30}}
                          ></Image>
                         <Text style={{fontSize:35, fontWeight:"bold",marginBottom:10}}>Welcome back!</Text>
-                        <View style={styles.asembler}>
-                            <View 
-                                style={styles.buttonP}
-                            >
-                                <Icon1 name ="user" size={25}  style={{marginLeft:15,
-                            marginTop:5}}/>
-                            </View>
-                            <View style={styles.main}
-                                
-                            >
-                                <TextInput style={{marginTop:5, fontSize:18}}
-                                    placeholder="Enter your phone"
-                                ></TextInput>
-                            </View>
-                        </View>
-                        <View style={styles.asembler}>
-                            <View 
-                                style={styles.buttonP}
-                            >
-                                <Icon1 name ="lock" size={25}  style={{marginLeft:15,
-                            marginTop:5}}/>
-                            </View>
-                            <View style={styles.main1}>
-                                <TextInput style={{marginTop:5,fontSize:18}}
-                                    secureTextEntry={getPassWordVisible? false:true}
-                                    placeholder="Enter your password"
-                                ></TextInput>
-                                
-                            </View>
-                            <View style={styles.buttonPP}>
-                                <TouchableOpacity
-                                    onPress={()=>{
-                                        setPassWordVisible(!getPassWordVisible)
-                                    }}
-                                >
-                                {getPassWordVisible?
-                                    <Icon
-                                            name='eye'
-                                            size={25}
-                                            style={{marginTop:5}}
-                                    ></Icon >
-                                    :
-                                    <Icon
-                                            name='eye-slash'
-                                            size={25}
-                                            style={{marginTop:5}}
-                                    ></Icon >
-                                    }
-                                    
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        <View>
-                            <ButtonLogin
-                                title="Login"
-                                onPress={ loginSucess}
-                            ></ButtonLogin>
-                        </View>
+                        <Formik
+                             initialValues={{ passWord:'',numberPhone:'' }}
+                             onSubmit={loginSucess}
+    
+                             
+                        >
+                             {({ handleChange, handleBlur, handleSubmit, values }) => (
+                        
+                                <View>
+                                    <View style={styles.asembler}>
+                                        <View 
+                                            style={styles.buttonP}
+                                        >
+                                            <Icon1 name ="user" size={25}  style={{marginLeft:15,
+                                        marginTop:5}}/>
+                                        </View>
+                                        <View style={styles.main}
+                                            
+                                        >
+                                            <TextInput style={{marginTop:5, fontSize:18}}
+                                                
+                                                placeholder="Enter your phone"
+                                                onChangeText={handleChange('numberPhone')}
+                                                onBlur={handleBlur('numberPhone')}
+                                                value={values.numberPhone}
+                                            ></TextInput>
+                                        </View>
+                                    </View>
+                                    <View style={styles.asembler}>
+                                        <View 
+                                            style={styles.buttonP}
+                                        >
+                                            <Icon1 name ="lock" size={25}  style={{marginLeft:15,
+                                        marginTop:5}}/>
+                                        </View>
+                                        <View style={styles.main1}>
+                                            <TextInput style={{marginTop:5,fontSize:18}}
+                                                secureTextEntry={getPassWordVisible? false:true}
+                                                placeholder="Enter your password"
+                                                onChangeText={handleChange('passWord')}
+                                                onBlur={handleBlur('passWord')}
+                                                value={values.passWord}
+                                            ></TextInput>
+                                            
+                                        </View>
+                                        <View style={styles.buttonPP}>
+                                            <TouchableOpacity
+                                                onPress={()=>{
+                                                    setPassWordVisible(!getPassWordVisible)
+                                                }}
+                                            >
+                                            {getPassWordVisible?
+                                                <Icon
+                                                        name='eye'
+                                                        size={25}
+                                                        style={{marginTop:5}}
+                                                ></Icon >
+                                                :
+                                                <Icon
+                                                        name='eye-slash'
+                                                        size={25}
+                                                        style={{marginTop:5}}
+                                                ></Icon >
+                                                }
+                                                
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                    <View>
+                                        <ButtonLogin
+                                            title="Login"
+                                            onPress={ handleSubmit}
+                                        ></ButtonLogin>
+                                    </View>
+                                </View>
+                             )}
+                        </Formik>
                         <View>
                             <ButtonLogin
                                 title="Continue with Google"

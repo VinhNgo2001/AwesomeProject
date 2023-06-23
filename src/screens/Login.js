@@ -18,13 +18,19 @@ import Icon1 from 'react-native-vector-icons/Feather'
 import ButtonLogin from '../components/ButtonLogin';
 import { AuthContext } from '../context/AuthContext';
 import { Formik } from 'formik';
+import Spinner from "react-native-loading-spinner-overlay";
 
 
 const Login = ({navigation}) => {
-    const {login,isTrue} =useContext(AuthContext)
+    const [checkLogin,setCheckLogin]=useState(false)
+    const {login,isTrue,isLoading,userInfo} =useContext(AuthContext)
+
     const loginSucess =(values)=>{
         login(values)
         console.log('check log i dung hay sai:' ,isTrue)
+        // if(isTrue){
+        //     navigation.navigate('homeTab')
+        // }
         if(isTrue){
             Alert.alert(
                 "Notification",
@@ -69,6 +75,7 @@ const Login = ({navigation}) => {
             >
                 <TouchableWithoutFeedback>
                     <View style={styles.loginContainer}>
+                        <Spinner visible={isLoading}></Spinner>
                         <Image
                          source={require('../../assets/images/anh_login.png')}
                          style={{width:250,height:250, borderRadius:125,marginTop:30}}

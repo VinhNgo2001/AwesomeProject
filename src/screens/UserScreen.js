@@ -7,15 +7,6 @@ import { useDispatch,useSelector } from 'react-redux';
 import { AuthContext } from '../context/AuthContext';
 
 
-const URL= 'http://172.20.33.125:5000/api/v1/users'
-//http://localhost:5000/
-
-
-// get data user
-
-
-
-
 const UserScreen = ({navigation}) => {
   
   const {userInfo,logOut} =useContext(AuthContext)

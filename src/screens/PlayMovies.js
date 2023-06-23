@@ -5,6 +5,7 @@ import { Video, ResizeMode } from 'expo-av';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon1 from 'react-native-vector-icons/AntDesign'
 import Icon2 from 'react-native-vector-icons/Feather'
+import YoutubePlayer from "react-native-youtube-iframe";
 
 const PlayMovies = ({navigation}) => {
   const video = React.useRef(null);
@@ -14,12 +15,12 @@ const PlayMovies = ({navigation}) => {
     <View style={styles.container}>
       
       
-      <View style={styles.containerVideo}>
+      {/* <View style={styles.containerVideo}>
         <Video
           ref={video}
           style={styles.video}
           source={require('../../assets/videos/naruto_movies.mp4')}
-          useNativeControls
+          useNativeControls={false}
           resizeMode={ResizeMode.CONTAIN}
           isLooping
           onPlaybackStatusUpdate={status => setStatus(() => status)}
@@ -30,7 +31,7 @@ const PlayMovies = ({navigation}) => {
         >
           <Icon1 name='play' size={30} style={{color:Colors.WHITE}}></Icon1> 
         </TouchableOpacity> */}
-         <View style={styles.buttons}>
+         {/* <View style={styles.buttons}>
         <Button
           title={status.isPlaying ? 'Pause' : 'Play'}
           onPress={() =>
@@ -50,6 +51,14 @@ const PlayMovies = ({navigation}) => {
                         size={25}
                     ></Icon>
       </TouchableOpacity>
+      </View> */} 
+      <View style={{paddingTop:50}}>
+        <YoutubePlayer
+          height={200}
+          
+          videoId={"WPl10ZrhCtk"}
+          
+        />
       </View>
       <View style={{width:'100%',backgroundColor:Colors.BACKGROUND_NAME_MOVIES,paddingTop:5,paddingBottom:10, paddingHorizontal:10}}>
         < View style={{width:'80%'}}>
@@ -110,15 +119,7 @@ const styles = StyleSheet.create({
         paddingTop:20,
         // paddingHorizontal:10,
     },
-    video:{
-      width:"100%",
-      height:150,
-    },
-    containerVideo:{
-      marginTop:20,
-      backgroundColor:Colors.BLACK,
-      
-    },
+    
     btnBack:{
       width:50,
       height:50,

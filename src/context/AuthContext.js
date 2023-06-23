@@ -1,14 +1,14 @@
 import React, {createContext, useState} from "react";
+import { Alert } from "react-native";
 import client from '../api/client';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 
 export const AuthContext = createContext()
 
 export const AuthProvider =({children})=>{
     const [userInfo,setUserInfo]=useState({})
     const [isLoading,setLoading]=useState(false)
-    const [isTrue,setTrue]=useState()
+    const [isTrue,setTrue]=useState(false)
     
     const login =async(values)=>{
         setLoading(true);
@@ -19,14 +19,16 @@ export const AuthProvider =({children})=>{
                 let userInfo =res.data
                 setUserInfo(userInfo)
                 AsyncStorage.setItem('userInfo',JSON.stringify(userInfo))
-                setLoading(false);
+                
                 setTrue(true)
                 console.log('user info from login: ', userInfo)
-            
+                
+                
             })
             .catch(e =>{
+            
                 console.log('err', e)
-                setTrue(false)
+                
             })
 
 

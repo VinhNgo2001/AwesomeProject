@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useEffect, useState, useContext} from 'react';
 import Colors from '../constants/Colors'
 import { TextInput } from 'react-native-paper'
 import Icon  from 'react-native-vector-icons/AntDesign';
+import { AuthContext } from '../context/AuthContext';
 
 const UpdateYourProfile = ({navigation}) => {
+  const {userInfo} =useContext(AuthContext)
   return (
     <View style={styles.container}>
       <View style={{height:"35%",backgroundColor:Colors.BACKGROUND_USER_AVATAR,alignItems:"center", marginBottom:10}}>
@@ -17,7 +19,7 @@ const UpdateYourProfile = ({navigation}) => {
         <View style={{flexDirection:'row', borderBottomWidth:1, }}>
             <View style={{width:"90%"}}>
                 <Text style={styles.textUser}>
-                  Name:Oggy
+                  Name:{userInfo.data.firstName}
                 </Text>
             </View>
             
@@ -52,7 +54,7 @@ const UpdateYourProfile = ({navigation}) => {
         </View><View style={{flexDirection:'row', borderBottomWidth:1}}>
             <View style={{width:"90%"}} >
                 <Text style={styles.textUser}>
-                Email: Oggy*****@gmail.com
+                Email: {userInfo.data.email}
                 </Text>
             </View >
             
@@ -69,7 +71,7 @@ const UpdateYourProfile = ({navigation}) => {
         </View><View style={{flexDirection:'row', borderBottomWidth:1}}>
             <View style={{width:"90%"}} >
                 <Text style={styles.textUser}>
-                Phone: *******89
+                Phone: {userInfo.data.numberPhone}
                 </Text>
             </View >
             

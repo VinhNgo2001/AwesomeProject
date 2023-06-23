@@ -6,16 +6,12 @@ import ButtonLogin from '../components/ButtonLogin';
 import Icons  from 'react-native-vector-icons/AntDesign';
 import ButtonBack from '../components/ButtonBack';
 import { Formik } from 'formik';
-import FormSignUp from '../components/FormSignUp';
-import client from '../api/client';
 import { AuthContext } from '../context/AuthContext';
 
 const SignUp = ({navigation}) => {
     const {signUp} =useContext(AuthContext)
     const SUSuccess = (values)=>{
         signUp(values)
-        
-        
         Alert.alert(
             "Notification",
             'Sign Up Success ',

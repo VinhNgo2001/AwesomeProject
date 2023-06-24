@@ -10,13 +10,6 @@ import {FilmService} from '../services/FilmService'
 
 
 const HomeScreen =({navigation}) => {
-    const images=[
-        require('../../assets/images/gifs/kimetsu_no_yaiba.webp'),
-        require('../../assets/images/gifs/OPM.webp'),
-        require('../../assets/images/gifs/nezuko.webp'),
-        require('../../assets/images/gifs/7vienbirong.webp'),
-
-    ]
     const [movies, setMovies] = useState([]);
     useEffect(() => {
         
@@ -78,8 +71,8 @@ const HomeScreen =({navigation}) => {
                     stickyHeaderHiddenOnScroll={false}
                     
                 > 
-                    {movies.map((movie)=>(
-                        <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies")} style={{width:330}}>
+                    {movies.reverse().map((movie)=>(
+                        <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies",{movie})} style={{width:330}}>
                             <HScrollView      
                                 imageUri={{ uri: movie.linkImage }}
                                 name={movie.filmName}
@@ -102,7 +95,7 @@ const HomeScreen =({navigation}) => {
                     
                 > 
                     {movies.map((movie)=>(
-                        <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies")} style={{width:320}}>
+                        <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies",{movie})} style={{width:320}}>
                             <HScrollView      
                                 imageUri={{ uri: movie.linkImage }}
                                 name={movie.filmName}

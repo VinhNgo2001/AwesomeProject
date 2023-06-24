@@ -14,18 +14,9 @@ const PlayMovies = ({navigation,route}) => {
   const listEp=Array.from({ length: 64 }, (value, index) => index+1);
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-                    style={styles.btnBack}
-                    onPress={()=> navigation.navigate("home")}
-                >   
-                    <Icon
-                        name="arrow-back"
-                        style={{color:Colors.WHITE,marginLeft:10,marginTop:4}}
-                        size={25}
-                    ></Icon>
-                </TouchableOpacity>
+      
     
-      <View style={{paddingTop:50}}>
+      <View style={{paddingTop:20}}>
         <YoutubePlayer
           height={200}
           
@@ -101,8 +92,9 @@ const styles = StyleSheet.create({
       borderRadius:30,
       paddingVertical:7,
       marginLeft:10,
-      marginTop:10,
-      position:'absolute'
+      marginTop:20,
+      position:'absolute',
+      
   },
   btnEp:{
     width:72,

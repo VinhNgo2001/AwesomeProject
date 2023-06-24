@@ -20,7 +20,7 @@ class HScrollView extends Component {
                     <Text style={{fontWeight:"bold",marginLeft:10,marginTop:5}}>{this.props.name}</Text>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={{fontSize:12,marginLeft:10,marginTop:5}}>{this.props.name},{this.props.name}</Text>
+                    <Text style={{fontSize:12,marginLeft:10,marginTop:5}}>{this.props.tag}</Text>
                 </View>
             
             

@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View , ScrollView,onPress, Pressable,TouchableOpacity} from 'react-native';
 import Colors from '../constants/Colors';
 import SearchFilter from '../components/SearchFilter';
 import SearchBar from '../components/SearchBar';
 import HScrollView from '../components/HScrollView';
-
+import {FilmService} from '../services/FilmService'
 
 
 
@@ -16,6 +17,23 @@ const HomeScreen =({navigation}) => {
         require('../../assets/images/gifs/7vienbirong.webp'),
 
     ]
+    const [movies, setMovies] = useState([]);
+    useEffect(() => {
+        
+        fetchMovies();
+      }, []);
+      const fetchMovies = async () => {
+        try {
+          const response = await FilmService.getAllFilms();
+          
+          const moviesData = response.data.data;
+          setMovies(moviesData);
+          console.log('data film------: \n', movies)
+          
+        } catch (error) {
+          console.error(error);
+        }
+      };
     return ( <
         ScrollView style = { styles.container } >
                       
@@ -36,41 +54,16 @@ const HomeScreen =({navigation}) => {
                     showsVerticalScrollIndicator={false}
                     stickyHeaderHiddenOnScroll={false}
                     
-                >   
-                <TouchableOpacity  onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView      
-                        imageUri={require('../../assets/images/demoslayder_bia.png')}
-                        name="One Puch Man"
-                    />
-                </TouchableOpacity>
-                
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/shadow_bia.jpg')}
-                        name="Shadow "
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/doremon_bia.jpg')}
-                        name="Doraemon"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/naruto_bia.png')}
-                        name="Naruto"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/demoslayder_bia.png')}
-                        name="Demon slayder"
-                    />
-                </TouchableOpacity>
-                
-                
-                
+                > 
+                    {movies.map((movie)=>(
+                        <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies",{movie})} style={{width:330}}>
+                            <HScrollView      
+                                imageUri={{ uri: movie.linkImage }}
+                                name={movie.filmName}
+                                tag={movie.tag}
+                            />
+                        </TouchableOpacity>
+                    ))}
                 </ScrollView>
 
 
@@ -82,41 +75,18 @@ const HomeScreen =({navigation}) => {
                 <ScrollView 
                     horizontal={true}
                     showsVerticalScrollIndicator={false}
-                >   
-                <TouchableOpacity  onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView      
-                        imageUri={require('../../assets/images/one-punch-man-chap-223-3-1021.webp')}
-                        name="One Puch Man"
-                    />
-                </TouchableOpacity>
-                
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/shadow_bia.jpg')}
-                        name="Shadow "
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/doremon_bia.jpg')}
-                        name="Doraemon"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/naruto_bia.png')}
-                        name="Naruto"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/demoslayder_bia.png')}
-                        name="Demon slayder"
-                    />
-                </TouchableOpacity>
-                
-                
-                
+                    stickyHeaderHiddenOnScroll={false}
+                    
+                > 
+                    {movies.map((movie)=>(
+                        <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies")} style={{width:330}}>
+                            <HScrollView      
+                                imageUri={{ uri: movie.linkImage }}
+                                name={movie.filmName}
+                                tag={movie.tag}
+                            />
+                        </TouchableOpacity>
+                    ))}
                 </ScrollView>
 
 
@@ -128,41 +98,18 @@ const HomeScreen =({navigation}) => {
                 <ScrollView 
                     horizontal={true}
                     showsVerticalScrollIndicator={false}
-                >   
-                <TouchableOpacity  onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView      
-                        imageUri={require('../../assets/images/one-punch-man-chap-223-3-1021.webp')}
-                        name="One Puch Man"
-                    />
-                </TouchableOpacity>
-                
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/shadow_bia.jpg')}
-                        name="Shadow "
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/doremon_bia.jpg')}
-                        name="Doraemon"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/naruto_bia.png')}
-                        name="Naruto"
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>navigation.navigate("movies")}>
-                    <HScrollView 
-                        imageUri={require('../../assets/images/demoslayder_bia.png')}
-                        name="Demon slayder"
-                    />
-                </TouchableOpacity>
-                
-                
-                
+                    stickyHeaderHiddenOnScroll={false}
+                    
+                > 
+                    {movies.map((movie)=>(
+                        <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies")} style={{width:320}}>
+                            <HScrollView      
+                                imageUri={{ uri: movie.linkImage }}
+                                name={movie.filmName}
+                                tag={movie.tag}
+                            />
+                        </TouchableOpacity>
+                    ))}
                 </ScrollView>
 
 

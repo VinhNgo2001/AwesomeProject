@@ -4,7 +4,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../constants/Colors';
 import Icon1 from 'react-native-vector-icons/Fontisto';
 import { useState } from 'react';
-const MoviesScreen =({navigation}) => {
+const MoviesScreen =({navigation,route}) => {
+    const {movie}=route.params
     let AddSucess =()=>{
         Alert.alert(
             "Notification",
@@ -24,11 +25,11 @@ const MoviesScreen =({navigation}) => {
     return ( <
         View style = { styles.container } >
             <View 
-                style={{height:"60%"}}
+                style={{height:"70%"}}
             >
              <ImageBackground 
 
-                source={require('../../assets/images/naruto_bia.png')}
+                source={{uri: movie.linkImage}}
                 resizeMode="cover"
                 style={{height:"100%"}}
             >
@@ -42,10 +43,10 @@ const MoviesScreen =({navigation}) => {
                         size={25}
                     ></Icon>
                 </TouchableOpacity>
-                <View style={{position:'absolute',bottom:0,height:100,width:"100%",backgroundColor:Colors.BACKGROUND_NAME_MOVIES,paddingLeft:20,paddingTop:25,flexDirection:'row'}}>
+                <View style={{position:'absolute',bottom:0,width:"100%",backgroundColor:Colors.BACKGROUND_NAME_MOVIES,paddingLeft:20,paddingTop:25,flexDirection:'row'}}>
                     <View style={{width:'80%'}}>
-                        <Text style={styles.btnName}>Shadow Garden</Text>
-                        <Text style={styles.btnTag}>Adventure,Action,..</Text>
+                        <Text style={styles.btnName}>{movie.filmName}</Text>
+                        <Text style={styles.btnTag}>{movie.tag}</Text>
                     </View>
                     <View style={{width:'20%'}}>
                         <TouchableOpacity
@@ -59,14 +60,13 @@ const MoviesScreen =({navigation}) => {
              </ImageBackground>
            </View>
            <ScrollView style={{ paddingHorizontal:10}}>
-                <Text style={styles.textND}>Shadow Garden is a mysterious hidden organization founded by Cid Kagenō also known as Shadow. Its primary goal is to eliminate the Cult of Diablos and prevent them from resurrecting the demon Diablos.
-
-                They are the archenemy faction of the Cult of Diablos. As a relatively unknown organization, they became a threat to other nations and even the Cult of Diablos came to fear them. In return, the Cult uses their connections in the public to incrimate and blame Shadow Garden for their own evil.
+                <Text style={styles.textND}>
+                    {movie.description}
                 </Text>
            </ScrollView>
            <View style={{ position:'absolute',left:"20%",bottom:30,alignContent:'center',}}>
                 <TouchableOpacity
-                    onPress={()=> navigation.navigate("play-movies")}
+                    onPress={()=> navigation.navigate("play-movies",{movie})}
                 >
                     <Text style={styles.btnWatch}>Watch now</Text>
                 </TouchableOpacity>

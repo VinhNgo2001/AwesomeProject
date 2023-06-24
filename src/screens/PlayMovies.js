@@ -7,63 +7,36 @@ import Icon1 from 'react-native-vector-icons/AntDesign'
 import Icon2 from 'react-native-vector-icons/Feather'
 import YoutubePlayer from "react-native-youtube-iframe";
 
-const PlayMovies = ({navigation}) => {
+const PlayMovies = ({navigation,route}) => {
+  const {movie}=route.params
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   const listEp=Array.from({ length: 64 }, (value, index) => index+1);
   return (
     <View style={styles.container}>
-      
-      
-      {/* <View style={styles.containerVideo}>
-        <Video
-          ref={video}
-          style={styles.video}
-          source={require('../../assets/videos/naruto_movies.mp4')}
-          useNativeControls={false}
-          resizeMode={ResizeMode.CONTAIN}
-          isLooping
-          onPlaybackStatusUpdate={status => setStatus(() => status)}
-        ></Video>
-        {/* <TouchableOpacity
-          style={{ paddingTop:5, paddingLeft:10}}
-          onPress={() => video.current.playFromPositionAsync(5000)}
-        >
-          <Icon1 name='play' size={30} style={{color:Colors.WHITE}}></Icon1> 
-        </TouchableOpacity> */}
-         {/* <View style={styles.buttons}>
-        <Button
-          title={status.isPlaying ? 'Pause' : 'Play'}
-          onPress={() =>
-            status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-          }
-        />
-      </View>
-      
-       
-        <TouchableOpacity
+      <TouchableOpacity
                     style={styles.btnBack}
-                    onPress={()=> navigation.navigate("movies")}
+                    onPress={()=> navigation.navigate("home")}
                 >   
                     <Icon
                         name="arrow-back"
                         style={{color:Colors.WHITE,marginLeft:10,marginTop:4}}
                         size={25}
                     ></Icon>
-      </TouchableOpacity>
-      </View> */} 
+                </TouchableOpacity>
+    
       <View style={{paddingTop:50}}>
         <YoutubePlayer
           height={200}
           
-          videoId={"WPl10ZrhCtk"}
+          videoId={movie.linkYT}
           
         />
       </View>
       <View style={{width:'100%',backgroundColor:Colors.BACKGROUND_NAME_MOVIES,paddingTop:5,paddingBottom:10, paddingHorizontal:10}}>
-        < View style={{width:'80%'}}>
-          <Text style={styles.btnName}>Shadow Garden</Text>
-          <Text style={styles.btnTag}>Adventure,Action,..</Text>
+        < View style={{width:'100%'}}>
+          <Text style={styles.btnName}>{movie.filmName}</Text>
+          <Text style={styles.btnTag}>{movie.tag}</Text>
         </View>
       </View>
       <View style={{flexDirection:'row',height:60,paddingLeft:5,backgroundColor:Colors.COLOR_BUTTON_EP,borderBottomWidth:1}}>
@@ -147,7 +120,7 @@ const styles = StyleSheet.create({
   },
   btnName:{
     color:Colors.WHITE,
-    fontSize:24,
+    fontSize:18,
     fontWeight:"bold",
   },
   btnTag:{

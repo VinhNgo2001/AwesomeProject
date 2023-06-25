@@ -3,10 +3,21 @@ import { Alert,ScrollView,ImageBackground,StyleSheet, Text, View, Image ,Touchab
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../constants/Colors';
 import Icon1 from 'react-native-vector-icons/Fontisto';
-import { useState } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
+import {FavoriteService} from '../services/FavoriteService'
+import { AuthContext } from '../context/AuthContext';
+
+
+
 const MoviesScreen =({navigation,route}) => {
+    const {userInfo} =useContext(AuthContext)
+
+
+
     const {movie}=route.params
-    let AddSucess =()=>{
+    console.log.movie
+    let AddSucess = async()=>{
+        const req = await FavoriteService.addFavorite([userInfo.data.id,movie.id])
         Alert.alert(
             "Notification",
             "Added to favorites",

@@ -19,50 +19,97 @@ import ButtonLogin from '../components/ButtonLogin';
 import { AuthContext } from '../context/AuthContext';
 import { Formik } from 'formik';
 import Spinner from "react-native-loading-spinner-overlay";
+import client from '../api/client';
+
 
 
 const Login = ({navigation}) => {
-    const [checkLogin,setCheckLogin]=useState(false)
+    
     const {login,isTrue,isLoading,userInfo} =useContext(AuthContext)
 
-    const loginSucess =(values)=>{
+    const loginSucess =async(values)=>{
         login(values)
-        console.log('check log i dung hay sai:' ,isTrue)
-        // if(isTrue){
-        //     navigation.navigate('homeTab')
-        // }
-        if(isTrue){
-            Alert.alert(
-                "Notification",
-                "Login success",
-                [
-                    {
-                        text:"oke",
-                        onPress: ()=>{
-                            navigation.navigate('homeTab')
+        const res = await client
+            .post('/log-in',{
+                ...values
+            })
+            .then(res=>{
+                
+                console.log('success')
+                    Alert.alert(
+                        "Notification",
+                        "Login success",
+                        [
+                            {
+                                text:"oke",
+                                onPress: ()=>{
+                                    navigation.navigate('homeTab')
+                                }
+                            }
+                        ]
+            
+                    )
+            
+                
+                   
+                
+                
+            })
+            .catch(e=>{
+                console.log('fail')
+                Alert.alert(
+                    "Notification",
+                    "Login false",
+                    [
+                        {
+                            text:"oke",
+                            // onPress: ()=>{
+                            //     navigation.navigate('homeTab')
+                            // }
                         }
-                    }
-                ]
+                    ]
+        
+                )
+            })
+        
+
+        
+
+        // if(isTrue){
+        //     Alert.alert(
+        //         "Notification",
+        //         "Login success",
+        //         [
+        //             {
+        //                 text:"oke",
+        //                 onPress: ()=>{
+        //                     navigation.navigate('homeTab')
+        //                 }
+        //             }
+        //         ]
     
-            )
-        }
-        else{
-            Alert.alert(
-                "Notification",
-                "Login false",
-                [
-                    {
-                        text:"oke",
-                        // onPress: ()=>{
-                        //     navigation.navigate('homeTab')
-                        // }
-                    }
-                ]
+        //     )
+        // }
+        // else{
+        //     Alert.alert(
+        //         "Notification",
+        //         "Login false",
+        //         [
+        //             {
+        //                 text:"oke",
+        //                 // onPress: ()=>{
+        //                 //     navigation.navigate('homeTab')
+        //                 // }
+        //             }
+        //         ]
     
-            )
-        }
+        //     )
+        // }
         
     }
+//    const checkLogin= ()=>{
+   
+//    }
     const [getPassWordVisible,setPassWordVisible]=useState(false)
   return (
     <KeyboardAvoidingView style={{flex:1,backgroundColor:Colors.BASIC_BACKGROUND, }}

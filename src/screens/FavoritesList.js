@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View,ScrollView,TouchableOpacity } from 'react-native'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import Colors from '../constants/Colors'
 import HScrollView from '../components/HScrollView'
-import {FilmService} from '../services/FilmService'
+import {FavoriteService} from '../services/FavoriteService'
+import { AuthContext } from '../context/AuthContext';
+
 
 const FavoritesList = ({navigation}) => {
+  const {userInfo} =useContext(AuthContext)
+
   const [movies, setMovies] = useState([]);
     useEffect(() => {
         
@@ -12,8 +16,8 @@ const FavoritesList = ({navigation}) => {
       }, []);
       const fetchMovies = async () => {
         try {
-          const response = await FilmService.getAllFilms();
-          
+          const response = await FavoriteService.getAllFavorite(userInfo.id);
+          console.log('req:',response.data)
           const moviesData = response.data.data;
           setMovies(moviesData);
           console.log('data film------: \n', movies)
@@ -27,15 +31,15 @@ const FavoritesList = ({navigation}) => {
       <Text style={styles.headerTitle}>Your Favorities List</Text>
       <View style={{marginTop:10, alignContent:"center"}}>
         {movies.map((movie)=>(
-                        <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies",{movie})} style={{width:330}}>
-                            <HScrollView      
-                                imageUri={{ uri: movie.linkImage }}
-                                name={movie.filmName}
-                                tag={movie.tag}
-                            />
-                        </TouchableOpacity>
-                    ))}
-                
+            <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies",{movie})} style={{width:330}}>
+                <HScrollView      
+                    imageUri={{ uri: movie.linkImage }}
+                    name={movie.filmName}
+                    tag={movie.tag}
+                />
+            </TouchableOpacity>
+        ))}
+    
                
       </View>
     </ScrollView>

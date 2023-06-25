@@ -1,5 +1,5 @@
 import React, {createContext, useState} from "react";
-import { Alert } from "react-native";
+
 import client from '../api/client';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -28,6 +28,7 @@ export const AuthProvider =({children})=>{
             .catch(e =>{
             
                 console.log('err', e)
+                let userIfo=0
                 
             })
 

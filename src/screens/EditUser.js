@@ -43,7 +43,6 @@ const EditUser = ({navigation}) => {
          style={styles.inputText}
          placeholder='Enter new name'
        >
-      
        </TextInput>
      </View>
     </View>

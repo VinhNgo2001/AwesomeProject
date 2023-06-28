@@ -8,7 +8,7 @@ export const FavoriteService = {
 
     },
     getAllFavorite :async(id)=>{
-       
+    //    console.log('req in favorite service',id)
         return await client.post('/get-favortite',{id})
     }
     

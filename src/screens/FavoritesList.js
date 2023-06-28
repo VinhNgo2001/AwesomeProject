@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View,ScrollView,TouchableOpacity } from 'react-native'
 import React, { useState, useEffect,useContext } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import Colors from '../constants/Colors'
 import HScrollView from '../components/HScrollView'
 import {FavoriteService} from '../services/FavoriteService'
@@ -8,18 +9,26 @@ import { AuthContext } from '../context/AuthContext';
 
 const FavoritesList = ({navigation}) => {
   const {userInfo} =useContext(AuthContext)
+  
+  const isFocused = useIsFocused();
 
   const [movies, setMovies] = useState([]);
     useEffect(() => {
-        
+      if (isFocused) {
+        // Gọi API khi tab được chọn
         fetchMovies();
-      }, []);
+      }
+        
+      }, [isFocused]);
       const fetchMovies = async () => {
         try {
-          const response = await FavoriteService.getAllFavorite(userInfo.id);
+          userInfo.id
+          
+          const response = await FavoriteService.getAllFavorite(userInfo.data.id);
           console.log('req:',response.data)
           const moviesData = response.data.data;
           setMovies(moviesData);
+          
           console.log('data film------: \n', movies)
           
         } catch (error) {

@@ -31,7 +31,9 @@ const HomeScreen =({navigation}) => {
         ScrollView style = { styles.container } >
                       
             <View style={{marginTop:20,width:"90%",alignSelf:"center"}}>
-                <SearchBar /> 
+                <SearchBar
+                // onpress={()=>navigation.navigate("movies",{item})}
+                /> 
             </View>     
             <View>
                 

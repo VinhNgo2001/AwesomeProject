@@ -11,6 +11,7 @@ import client from '../api/client'
 const SignUp = ({navigation}) => {
     // const {signUp} =useContext(AuthContext)
     const SUSuccess = async(values)=>{
+
        
         const res = await client 
             .post('/create-user',{...values})
@@ -47,7 +48,7 @@ const SignUp = ({navigation}) => {
                      style={{width:250,height:250, borderRadius:125,marginTop:30}}
                     ></Image>
                     <Text
-                        style={{fontWeight:"bold", fontSize:24, width:230, marginLeft:20, marginTop:20}}
+                        style={{fontWeight:"bold", fontSize:23, width:230, marginLeft:0, marginTop:20}}
                     >Welcome to HIPPO</Text>
                     <Formik
                          initialValues={{ firstName: '',passWord:'',numberPhone:'' }}

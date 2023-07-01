@@ -6,6 +6,7 @@ import SearchScreen from "./src/screens/SearchScreen";
 import MoviesScreen from "./src/screens/MoviesScreen";
 import Login from "./src/screens/Login";
 import FogetPW from "./src/screens/FogetPW";
+import PassWord from "./src/screens/PassWord";
 // import SendOTP from "./src/screens/SendOTP";
 import SignUp from "./src/screens/SignUp";
 import UserScreen from "./src/screens/UserScreen";
@@ -100,6 +101,7 @@ function TabUser() {
       <StackUser.Screen name="user" component={UserScreen}  />
       <StackUser.Screen name="updatePF" component={UpdateYourProfile} />
       <StackUser.Screen name="edit-user" component={EditUser} />
+      <StackUser.Screen name="pass-word" component={PassWord} />
       
     </StackUser.Navigator>
   );

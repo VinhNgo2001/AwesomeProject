@@ -18,21 +18,24 @@ const MoviesScreen =({navigation,route}) => {
     console.log.movie
     let AddSucess = async()=>{
         const req = await FavoriteService.addFavorite([userInfo.data.id,movie.id])
-        Alert.alert(
-            "Notification",
-            "Added to favorites",
-            [
-                {
-                    text:"oke",
-                    onPress: ()=>{
-                        setAddFavorties(!getAddFavorties)
-                    }
-                }
-            ]
-
-        )
+            .then(res=>{
+                console.log(res.data)
+                Alert.alert(
+                    "Notification",
+                    res.data.message,
+                    [
+                        {
+                            text:"oke",
+                            
+                        }
+                    ]
+        
+                )
+            })
+        
+        
     }
-    const [getAddFavorties,setAddFavorties]= useState(false)
+    const [getAddFavorties,setAddFavorties]= useState(true)
     return ( <
         View style = { styles.container } >
             <View 
@@ -63,7 +66,7 @@ const MoviesScreen =({navigation,route}) => {
                         <TouchableOpacity
                         onPress={ AddSucess}
                         >
-                            <Icon1 name='favorite' size={60} style={getAddFavorties?{color:Colors.RED}:{color:Colors.WHITE}}></Icon1>
+                            <Icon1 name='favorite' size={60} style={{color:Colors.WHITE}}></Icon1>
                             
                         </TouchableOpacity>
                     </View>

@@ -8,14 +8,14 @@ import {FilmService} from '../services/FilmService'
 
 const SearchScreen = ({navigation}) => {
     const [searchText,setSearchText]=useState('')
-    const [data,setData] =useState([])
+    const [movies,setData] =useState([])
     useEffect(() => {
         
         fetchSearch();
     }, [searchText]);
     const fetchSearch = async ()=>{
         const res = await FilmService.searcFilm([searchText])
-     //    console.log('result search:', res.data.data)
+        console.log('result search:', res.data.data)
         setData(res.data.data)
         
     }
@@ -23,8 +23,10 @@ const SearchScreen = ({navigation}) => {
     <View style={styles.container}>
         
         <View style={{flexDirection:'row',marginTop:40}}>
-            <View>
-                <TouchableOpacity>
+            <View style={{marginLeft:15,marginTop:4}}>
+                <TouchableOpacity
+                    onPress={()=>navigation.navigate("home")}  
+                >
                     <Icon name='ios-chevron-back' size={30}></Icon>
                 </TouchableOpacity>
             </View>
@@ -39,17 +41,20 @@ const SearchScreen = ({navigation}) => {
             </View>
         </View>
             <ScrollView style={styles.results}>
-                <FlatList
-                data={data}
-                renderItem={({ item }) => <TouchableOpacity
-                    // onPress={()=>navigation.navigate("movies",{data})}
-                    >
-                        <Text style={styles.resultText}>{item.filmName}</Text>
-                        
-                    </TouchableOpacity>}
-                    
-                keyExtractor={item => item.id.toString()}
-                />
+            {movies&&movies.map((movie)=>(
+                        <TouchableOpacity key={movie.id} onPress={()=>navigation.navigate("movies",{movie})} >
+                            <View style={{flexDirection:'row',height:120}}>
+                                <View style={{marginBottom:10,paddingBottom:5,borderTopWidth:1,width:"70%",}}>
+                                    <Text style={{fontSize:20}} >{movie.filmName}</Text>
+                                    <Text  >{movie.tag}</Text>
+                                </View>
+                                
+                                <Image source={{uri: movie.linkImage}} style={{height:100,width:100}}></Image>
+                            </View>
+                            
+                            
+                        </TouchableOpacity>
+                    ))}
             </ScrollView >
             
       
@@ -86,8 +91,9 @@ const styles = StyleSheet.create({
         fontSize:18,
     },
     results:{
-        marginHorizontal:25,
+        marginHorizontal:35,
         marginTop:10,
+        
     },
     resultText:{
         fontSize:18

@@ -49,13 +49,15 @@ const UserScreen = ({navigation}) => {
       
       <View style={{alignItems:"center", marginTop:20}}>
         <TouchableOpacity 
-        onPress={()=>navigation.navigate("updatePF")}
+          onPress={()=>navigation.navigate("updatePF")}
         >
           <Text
             style={{textDecorationLine:"underline", color:Colors.LIGHTSKY,fontSize:20}}
           >Update your profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={()=>navigation.navigate("pass-word")}
+        >
           <Text
             style={{textDecorationLine:"underline", color:Colors.LIGHTSKY,fontSize:20}}
           >Change your password</Text>

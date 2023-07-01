@@ -2,7 +2,7 @@ import React from "react";
 import {NavigationContainer } from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import HomeScreen from "./src/screens/HomeScreen";
-import SearchBar from "./src/components/SearchBar";
+import SearchScreen from "./src/screens/SearchScreen";
 import MoviesScreen from "./src/screens/MoviesScreen";
 import Login from "./src/screens/Login";
 import FogetPW from "./src/screens/FogetPW";
@@ -158,7 +158,12 @@ export default function () {
                         options={{headerShown:false}}
                         
                     ></Stack.Screen>
-                    
+                    <Stack.Screen
+                        name='search'
+                        component={SearchScreen}
+                        options={{headerShown:false}}
+                        
+                    ></Stack.Screen>
                     <Stack.Screen 
                         name = "movies" 
                         component={MoviesScreen}

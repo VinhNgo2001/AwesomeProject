@@ -7,27 +7,34 @@ import Icons  from 'react-native-vector-icons/AntDesign';
 import ButtonBack from '../components/ButtonBack';
 import { Formik } from 'formik';
 import { AuthContext } from '../context/AuthContext';
-
+import client from '../api/client'
 const SignUp = ({navigation}) => {
-    const {signUp} =useContext(AuthContext)
-    const SUSuccess = (values)=>{
-        signUp(values)
-        Alert.alert(
-            "Notification",
-            'Sign Up Success ',
-            [
-                {
-                    text:"Close",
-                    onPress:()=>{
-                        
-                        navigation.navigate('login')},
-                        
-
-                    
-                    //lam sau
-                }
-            ]
-        )
+    // const {signUp} =useContext(AuthContext)
+    const SUSuccess = async(values)=>{
+       
+        const res = await client 
+            .post('/create-user',{...values})
+            .then(res=>{
+                
+                console.log("check log:",res.data.message)
+                Alert.alert(
+                    res.data.message1,
+                    res.data.message2,
+                    [
+                        {
+                            text:'OK',
+                            onPress:()=>{
+                                
+                                navigation.navigate('login')},
+                                
+        
+                            
+                            //lam sau
+                        }
+                    ]
+                )
+            })
+       
         }
   return (
     <KeyboardAvoidingView style={{flex:1,backgroundColor:Colors.BASIC_BACKGROUND,}}>

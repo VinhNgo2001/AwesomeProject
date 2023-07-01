@@ -4,9 +4,12 @@ import Colors from '../constants/Colors'
 import { TextInput } from 'react-native-paper'
 import Icon  from 'react-native-vector-icons/AntDesign';
 import { AuthContext } from '../context/AuthContext';
+import { Formik } from 'formik';
+
 
 const UpdateYourProfile = ({navigation}) => {
   const {userInfo} =useContext(AuthContext)
+
   return (
     <View style={styles.container}>
       <View style={{height:"35%",backgroundColor:Colors.BACKGROUND_USER_AVATAR,alignItems:"center", marginBottom:10}}>
@@ -25,7 +28,7 @@ const UpdateYourProfile = ({navigation}) => {
             
 
             <TouchableOpacity style={{marginTop:5,flex:1}}
-                onPress={()=>navigation.navigate("edit-user")}
+                onPress={()=>navigation.navigate("edit-user",{'title':'Name','value':'firstName'})}
             >
                 <Icon name='right' size={25}>
 
@@ -43,7 +46,7 @@ const UpdateYourProfile = ({navigation}) => {
             
 
             <TouchableOpacity style={{ marginTop:5,flex:1}}
-              onPress={()=>navigation.navigate("edit-user")}
+              // onPress={()=>navigation.navigate("edit-user",{'title':'Date of birth','value':'dateOfBirth'})}
             >
                 <Icon name='right' size={25}>
 
@@ -60,7 +63,7 @@ const UpdateYourProfile = ({navigation}) => {
             
 
             <TouchableOpacity style={{ marginTop:5,flex:1}}
-              onPress={()=>navigation.navigate("edit-user")}
+              onPress={()=>navigation.navigate("edit-user",{'title':'Email','value':'email'})}
             >
                 <Icon name='right' size={25}>
 
@@ -77,7 +80,7 @@ const UpdateYourProfile = ({navigation}) => {
             
 
             <TouchableOpacity style={{ marginTop:5,flex:1}}
-              onPress={()=>navigation.navigate("edit-user")}
+              // onPress={()=>navigation.navigate("edit-user",{'title':'Number Phone','value':'numberPhone'})}
             >
                 <Icon name='right' size={25}>
 

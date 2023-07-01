@@ -43,7 +43,7 @@ export const AuthProvider =({children})=>{
                 
             .then(res=>{
                 let userInfo=res.data
-                console.log("sign up success: ",userInfo)
+                console.log("log check sign Up ",userInfo)
             })
             
         

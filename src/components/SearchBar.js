@@ -4,26 +4,24 @@ import Colors from '../constants/Colors'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {FilmService} from '../services/FilmService'
 
-const SearchBar = ({navigation}) => {
+const SearchBar = ({}) => {
     const [searchText,setSearchText]=useState('')
     console.log('search text',searchText)
     const [data,setData] =useState([])
-    const gotoMovie =()=>{
-        // navigation.navigate('movies',{item})
-
-    }
+   
     useEffect(() => {
         
         fetchSearch();
       }, [searchText]);
       const fetchSearch = async ()=>{
        const res = await FilmService.searcFilm([searchText])
-       console.log('result search:', res.data.data)
+    //    console.log('result search:', res.data.data)
        setData(res.data.data)
+       onSearch(res.data.data)
 
       }
   return (
-    <View style={styles.container}>
+    <View style={styles.containerSearch}>
     <View style={styles.asembler}>
         
             <View 
@@ -47,7 +45,7 @@ const SearchBar = ({navigation}) => {
         </View>
 
     </View >
-        <ScrollView style={styles.results}>
+        {/* <ScrollView style={styles.results}>
             <FlatList
             data={data}
             renderItem={({ item }) => <TouchableOpacity
@@ -57,7 +55,7 @@ const SearchBar = ({navigation}) => {
                 </TouchableOpacity>}
             keyExtractor={item => item.id.toString()}
         />
-        </ScrollView >
+        </ScrollView > */}
     </View>
   )
 }
@@ -65,7 +63,7 @@ const SearchBar = ({navigation}) => {
 export default SearchBar
 
 const styles = StyleSheet.create({
-    container:{
+    containerSearch:{
         backgroundColor:Colors.WHITE,
         borderTopRightRadius:40,
         borderBottomRightRadius:40,
